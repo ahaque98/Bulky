@@ -1,5 +1,5 @@
-﻿using BulkyWeb.Data;
-using BulkyWeb.Models;
+﻿using Bulky.Models;
+using BulkyWeb.DataAccess.Data;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BulkyWeb.Controllers
@@ -64,15 +64,6 @@ namespace BulkyWeb.Controllers
         [HttpPost]
         public IActionResult Edit(Category obj)
         {
-            //if (obj.Name ==  obj.DisplayOrder.ToString()) //Model Validation
-            //{
-            //    ModelState.AddModelError("name", "The display order cannot exactly match the name");
-            //}
-
-            //if (obj.Name.ToLower() == "test") //Property Validation
-            //{
-            //    ModelState.AddModelError("", "test is an invalid option");
-            //}
 
             if (ModelState.IsValid)
             {
@@ -108,7 +99,7 @@ namespace BulkyWeb.Controllers
             {
                 return NotFound();
             }
-            
+
             _db.Categories.Remove(obj);
             _db.SaveChanges();
             TempData["success"] = "Category deleted successfully!";
